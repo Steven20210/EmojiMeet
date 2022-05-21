@@ -1,8 +1,11 @@
-// chrome.runtime.onMessage.addListener(() => {
-//   const optionsEl = document.querySelector(`[aria-label='More options']`);
-//   optionsEl.click();
-//   console.log("working");
-// });
-// const videoEl = document.querySelector(`[aria-label='Video']`);
-
-const optionsEl = document.querySelector(`[aria-label='More options']`);
+const ff = (video) => {
+  if (typeof video != "undefined") {
+    console.log("yes");
+  }
+  console.log("hmmm");
+};
+setTimeout(() => {
+  const video = document.querySelector(`.p2hjYe`);
+  video.addEventListener("mouseover", () => console.log("hi"));
+  ff(video);
+}, 7000);
