@@ -9,6 +9,11 @@ def index():
         json_data = request.json
         print(json_data)
         img_data = json_data['image']
+        mood = detect_faces(img_data)
+
+        json_mood = {"mood":mood}
+
+        return json_mood
 
 
 
