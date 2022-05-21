@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from '../../assets/img/logo.svg';
-import Greetings from '../../containers/Greetings/Greetings';
+import React, { useState, useEffect } from 'react';
+import Emoji from './Emoji.jsx';
 import './Popup.css';
 
 const Popup = () => {
+  const [emotion, setEmotion] = useState('');
+
+  const fetchEmotion = () => {
+    fetch('http://127.0.0.1:5000/')
+      .then((response) => response.json())
+      .then((data) => setEmotion(data));
+  };
+
+  const emojiSelect = (emotion) => {
+    switch (emotion) {
+      case 'happy':
+        return '😄';
+      case 'sad':
+        return '😢';
+      default:
+        return '⏳';
+    }
+  };
+  const rr = () => {
+    setEmotion('happy');
+  };
+  // useEffect(() => {
+  //   fetchEmotion();
+  // }, [emotion]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/pages/Popup/Popup.jsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React!
-        </a>
-      </header>
+    <div className="App" onClick={rr}>
+      <Emoji emoji={emojiSelect(emotion)} />
     </div>
   );
 };
