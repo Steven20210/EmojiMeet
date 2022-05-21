@@ -1,8 +1,8 @@
 import os, io
 from google.cloud import vision
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'ServiceAccountToken.json'
-path = "steven_picture.jpg"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'src/ServiceAccountToken.json'
+path = "src/steven_picture.jpg"
 client = vision.ImageAnnotatorClient()
 
 with io.open(path, 'rb') as image_file:
