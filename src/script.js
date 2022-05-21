@@ -1,11 +1,8 @@
-const ff = (video) => {
-  if (typeof video != "undefined") {
-    console.log("yes");
-  }
-  console.log("hmmm");
-};
-setTimeout(() => {
+import html2canvas from "html2canvas";
+const everything = () => {
   const video = document.querySelector(`.p2hjYe`);
-  video.addEventListener("mouseover", () => console.log("hi"));
-  ff(video);
-}, 7000);
+};
+
+setTimeout(() => {
+  setInterval(() => everything(), 1000);
+}, 6000);
