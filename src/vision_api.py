@@ -1,40 +1,28 @@
 import os, io, base64
 from google.cloud import vision
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'src/ServiceAccountToken.json'
-path = "src/steven_picture.jpg"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'ServiceAccountToken.json'
+path = "steven_picture.jpg"
+temp_path = "temp.jpg"
 client = vision.ImageAnnotatorClient()
+#
+# with io.open(path, 'rb') as image_file:
+#     content = image_file.read()
 
-with io.open(path, 'rb') as image_file:
-    content = image_file.read()
 
-def encode_image(image):
-  return base64.b64encode(image)
 
 def detect_faces(contents):
-    b = base64.b64decode(contents)
-    # print(b)
-    # print(content[:100])
-    """Detects faces in an image."""
-    result = encode_image(b)
-    print(result[:100])
 
-    # result = contents
-    # print(result[:100])
+    # Creates jpg of img
+    f = open("temp.jpg", "w")
+    f.write(contents)
+    f.close()
 
-    # content = base64.b64decode(contents)
-    # with open('something.jpg', 'wb') as f:
-    #     f.write(content)
-    # print(type(contents))
-    image = vision.Image(content=result)
-    
-    # image = base64.b64decode(contents)
-    # png = base64.b64decode(contents)
-    # f = open("temp.png", "w")
-    # f.write(contents)
-    # # f.write(png)
-    # f.close()
-    # image = r"temp.png"
+    # Opens the image
+    with io.open(path, 'rb') as face_file:
+        byte_data = face_file.read()
+
+    image = vision.Image(content=byte_data)
 
     response = client.face_detection(image=image)
 
