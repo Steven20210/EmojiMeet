@@ -12,6 +12,8 @@ def detect_faces(contents):
     """Detects faces in an image."""
 
     image = vision.Image(content=contents)
+    print(image)
+    print("success image")
 
     response = client.face_detection(image=image)
     faces = response.face_annotations
@@ -44,4 +46,4 @@ def detect_faces(contents):
     return emotion
 
 
-detect_faces(content)
+# detect_faces(content)
