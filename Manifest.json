@@ -1,17 +1,13 @@
 {
-    "name": "EmojiMeet",
-    "description": "An extension to display emotions as a background in Google Meet",
-    "permissions": ["activeTab", "storage", "tabs", "notifications"],
-    "version": "1.0",
-    "manifest_version": 3,
-    "content_scripts": [{
-        "matches": [
-            "https://meet.google.com/*"
-        ],
-        "js": [
-            "src/tf.min.js",
-            "src/teachablemachine-pose.min.js",
-            "src/background.js"
-        ]
-    }]
+  "name": "EmojiMeet",
+  "description": "An extension to display emotions as a background in Google Meet",
+  "permissions": ["activeTab", "storage", "tabs", "notifications"],
+  "version": "1.0",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": ["https://meet.google.com/*"],
+      "js": []
+    }
+  ]
 }
