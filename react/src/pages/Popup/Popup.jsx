@@ -17,12 +17,20 @@ const Popup = () => {
         return '😄';
       case 'sad':
         return '😢';
+      case 'surprise':
+        return '😲';
+      case 'angry':
+        return '😡';
+      case 'underexposed':
+        return '🙈';
+      case 'hat':
+        return '🤠';
       default:
         return '⏳';
     }
   };
   const rr = () => {
-    setEmotion('happy');
+    setEmotion('angry');
   };
   // useEffect(() => {
   //   fetchEmotion();
