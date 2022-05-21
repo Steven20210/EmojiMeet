@@ -11,8 +11,9 @@ with io.open(path, 'rb') as image_file:
 def detect_faces(contents):
     """Detects faces in an image."""
 
-    image = vision.Image(content=contents)
-    print(image)
+    # image = vision.Image(content=contents)
+    image = contents
+    # print(image)
     print("success image")
 
     response = client.face_detection(image=image)
