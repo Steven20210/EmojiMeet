@@ -1,19 +1,33 @@
-import os, io
+import os, io, base64
 from google.cloud import vision
+import base64
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'ServiceAccountToken.json'
 path = "steven_picture.jpg"
+temp_path = "temp.jpg"
 client = vision.ImageAnnotatorClient()
-
+#
 with io.open(path, 'rb') as image_file:
     content = image_file.read()
 
-def detect_faces(contents):
-    """Detects faces in an image."""
 
-    image = vision.Image(content=contents)
+
+def detect_faces(contents):
+
+    # Creates jpg of img
+    contents = contents.replace('data:image/png;base64,', '')
+    f = open("temp.jpg", "wb")
+    f.write(base64.b64decode(contents))
+    f.close()
+
+    # Opens the image
+    with io.open(temp_path, 'rb') as face_file:
+        byte_data = face_file.read()
+
+    image = vision.Image(content=byte_data)
 
     response = client.face_detection(image=image)
+
     faces = response.face_annotations
 
     # Names of likelihood from google.cloud.vision.enums
@@ -22,19 +36,23 @@ def detect_faces(contents):
     print('Faces:')
 
     emotion = ""
-
+    print(faces)
     for face in faces:
-        if (face.anger_likelihood >= face.joy_likelihood) and (face.anger_likelihood >= face.surprise_likelihood):
+        print(likelihood_name[face.anger_likelihood])
+        if (likelihood_name[face.anger_likelihood] == "VERY_LIKELY") or (likelihood_name[face.anger_likelihood] == "LIKELY") \
+                or (likelihood_name[face.anger_likelihood] == "POSSIBLE"):
             emotion = "angry"
-        elif (face.joy_likelihood >= face.anger_likelihood) and (face.joy_likelihood >= face.surprise_likelihood):
+        elif (likelihood_name[face.joy_likelihood] == "VERY_LIKELY") or (likelihood_name[face.joy_likelihood] == "LIKELY")\
+                or (likelihood_name[face.joy_likelihood] == "POSSIBLE"):
             emotion = "joy"
-        else:
+        elif (likelihood_name[face.surprise_likelihood] == "VERY_LIKELY") or (likelihood_name[face.surprise_likelihood] == "LIKELY")\
+                or (likelihood_name[face.surprise_likelihood] == "POSSIBLE"):
             emotion = "surprise"
-
-        print('anger: {}'.format(likelihood_name[face.anger_likelihood]))
-        print('joy: {}'.format(likelihood_name[face.joy_likelihood]))
-        print('surprise: {}'.format(likelihood_name[face.surprise_likelihood]))
-
+        elif (likelihood_name[face.sorrow_likelihood] == "VERY_LIKELY") or (likelihood_name[face.sorrow_likelihood] == "LIKELY") \
+                or (likelihood_name[face.sorrow_likelihood] == "POSSIBLE"):
+            emotion = "sorrow"
+        else:
+            emotion = "unknown"
 
     if response.error.message:
         raise Exception(
@@ -44,4 +62,4 @@ def detect_faces(contents):
     return emotion
 
 
-detect_faces(content)
+# detect_faces(content)
