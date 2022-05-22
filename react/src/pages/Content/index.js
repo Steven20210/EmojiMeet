@@ -25,5 +25,5 @@ const everything = () => {
 };
 
 setTimeout(() => {
-  setInterval(() => everything(), 5000);
+  setInterval(() => everything(), 2000);
 }, 5000);
