@@ -1,7 +1,7 @@
 import html2canvas from 'html2canvas';
 
 const everything = () => {
-  const video = document.querySelector(`.xsj2Ff`);
+  const video = document.querySelectorAll(`Gv1mTb-aTv5jf`)[1];
   html2canvas(video, {
     allowTaint: true,
     useCORS: true,
