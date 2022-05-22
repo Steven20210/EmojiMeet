@@ -2,7 +2,6 @@ import html2canvas from 'html2canvas';
 
 const everything = () => {
   const video = document.querySelector(`.p2hjYe`);
-  console.log('sup');
   html2canvas(video, {
     allowTaint: true,
     useCORS: true,
@@ -18,12 +17,7 @@ const everything = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ image: image }),
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          mood = json.mood;
-          console.log(mood);
-        });
+      }).then((res) => res.json());
     })
     .catch((e) => {
       // Handle errors
@@ -33,4 +27,4 @@ const everything = () => {
 
 setTimeout(() => {
   setInterval(() => everything(), 40000);
-}, 60000);
+}, 5000);
