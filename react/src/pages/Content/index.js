@@ -1,7 +1,7 @@
 import html2canvas from 'html2canvas';
 
 const everything = () => {
-  const video = document.querySelector(`.p2hjYe`);
+  const video = document.querySelector(`.xsj2Ff`);
   html2canvas(video, {
     allowTaint: true,
     useCORS: true,
@@ -25,5 +25,5 @@ const everything = () => {
 };
 
 setTimeout(() => {
-  setInterval(() => everything(), 10000);
+  setInterval(() => everything(), 5000);
 }, 5000);
