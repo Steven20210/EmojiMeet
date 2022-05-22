@@ -2,9 +2,9 @@ import os, io, base64
 from google.cloud import vision
 import base64
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'ServiceAccountToken.json'
-path = "steven_picture.jpg"
-temp_path = "temp.jpg"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'src/ServiceAccountToken.json'
+path = "src/steven_picture.jpg"
+temp_path = "src/temp.jpg"
 client = vision.ImageAnnotatorClient()
 #
 with io.open(path, 'rb') as image_file:
@@ -16,7 +16,7 @@ def detect_faces(contents):
 
     # Creates jpg of img
     contents = contents.replace('data:image/png;base64,', '')
-    f = open("temp.jpg", "wb")
+    f = open("src/temp.jpg", "wb")
     f.write(base64.b64decode(contents))
     f.close()
 
@@ -51,6 +51,10 @@ def detect_faces(contents):
         elif (likelihood_name[face.sorrow_likelihood] == "VERY_LIKELY") or (likelihood_name[face.sorrow_likelihood] == "LIKELY") \
                 or (likelihood_name[face.sorrow_likelihood] == "POSSIBLE"):
             emotion = "sorrow"
+        elif (likelihood_name[face.headwear_likelihood] == "VERY_LIKELY") or (likelihood_name[face.headwear_likelihood] == "LIKELY"):
+            emotion = "hat"
+        elif (likelihood_name[face.blurred_likelihood] == "VERY_LIKELY") or (likelihood_name[face.blurred_likelihood] == "LIKELY"):
+            emotion = "underexposed"
         else:
             emotion = "unknown"
 

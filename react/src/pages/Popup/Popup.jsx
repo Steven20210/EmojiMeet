@@ -11,6 +11,10 @@ const Popup = () => {
       .then((data) => setEmotion(data.mood));
   };
 
+  useEffect(() => {
+    setInterval(() => fetchEmotion(), 500);
+  }, []);
+
   const emojiSelect = (emotion) => {
     switch (emotion) {
       case 'joy':
@@ -23,20 +27,14 @@ const Popup = () => {
         return '😡';
       case 'unknown':
         return '😐';
-      // case 'underexposed':
-      //   return '🙈';
-      // case 'hat':
-      //   return '🤠';
+      case 'underexposed':
+        return '🙈';
+      case 'hat':
+        return '🤠';
       default:
         return '⏳';
     }
   };
-  // const rr = () => {
-  //   setEmotion('angry');
-  // };
-  useEffect(() => {
-    setInterval(() => fetchEmotion(), 1000);
-  }, []);
 
   return (
     <div className="App">
