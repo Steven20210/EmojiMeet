@@ -9,7 +9,6 @@ const everything = () => {
     .then(function (canvas) {
       // It will return a canvas element
       let image = canvas.toDataURL('image/jpg', 0.5);
-      console.log(image);
       fetch('http://127.0.0.1:5000/', {
         method: 'POST',
         headers: {

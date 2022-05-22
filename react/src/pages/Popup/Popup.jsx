@@ -37,7 +37,7 @@ const Popup = () => {
   }, [emotion]);
 
   return (
-    <div className="App" onClick={rr}>
+    <div className="App">
       <Emoji emoji={emojiSelect(emotion)} />
     </div>
   );
