@@ -8,33 +8,33 @@ const Popup = () => {
   const fetchEmotion = () => {
     fetch('http://127.0.0.1:5000/')
       .then((response) => response.json())
-      .then((data) => setEmotion(data));
+      .then((data) => setEmotion(data.mood));
   };
 
   const emojiSelect = (emotion) => {
     switch (emotion) {
-      case 'happy':
+      case 'joy':
         return '😄';
-      case 'sad':
+      case 'sorrow':
         return '😢';
       case 'surprise':
         return '😲';
       case 'angry':
         return '😡';
-      case 'underexposed':
-        return '🙈';
-      case 'hat':
-        return '🤠';
+      // case 'underexposed':
+      //   return '🙈';
+      // case 'hat':
+      //   return '🤠';
       default:
         return '⏳';
     }
   };
-  const rr = () => {
-    setEmotion('angry');
-  };
-  // useEffect(() => {
-  //   fetchEmotion();
-  // }, [emotion]);
+  // const rr = () => {
+  //   setEmotion('angry');
+  // };
+  useEffect(() => {
+    fetchEmotion();
+  }, [emotion]);
 
   return (
     <div className="App" onClick={rr}>

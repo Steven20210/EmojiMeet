@@ -5,7 +5,7 @@ const Emoji = ({ emoji }) => {
   return (
     <div className="container">
       <p className="text">
-        {loading ? 'Loading...' : 'The person you are talking to is feeling'}
+        {loading ? 'Loading...' : 'Your friend is feeling'}
       </p>
 
       <div className={loading ? 'loading' : 'emoji'}>{emoji}</div>
