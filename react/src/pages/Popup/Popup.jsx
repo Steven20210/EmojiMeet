@@ -21,6 +21,8 @@ const Popup = () => {
         return '😲';
       case 'angry':
         return '😡';
+      case 'unknown':
+        return '😐';
       // case 'underexposed':
       //   return '🙈';
       // case 'hat':
@@ -33,8 +35,8 @@ const Popup = () => {
   //   setEmotion('angry');
   // };
   useEffect(() => {
-    setInterval (() => fetchEmotion(), 1000)
-   }, []);
+    setInterval(() => fetchEmotion(), 1000);
+  }, []);
 
   return (
     <div className="App">
