@@ -33,8 +33,8 @@ const Popup = () => {
   //   setEmotion('angry');
   // };
   useEffect(() => {
-    fetchEmotion();
-  }, [emotion]);
+    setInterval (() => fetchEmotion(), 1000)
+   }, []);
 
   return (
     <div className="App">
